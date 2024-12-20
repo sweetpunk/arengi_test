@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+    <div class="example-wrapper">
+        <h1>Create car</h1>
+        <p>
+            {{ form_start(form) }}
+
+            {{ form_row(form.brand) }}
+            {{ form_row(form.model) }}
+
+
+            {{ form_row(form.type) }}
+
+
+            {{ form_row(form.nbSeat) }}
+            {{ form_row(form.color) }}
+        <div id="additional-info-container" style="display: none;">
+
+            {{ form_row(form.ptra) }}
+        </div>
+            {{ form_row(form.create) }}
+
+
+            {{ form_end(form) }}
+
+{#            {{ form(form) }}#}
+        </p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const typeField = document.querySelector('#{{ form.type.vars.id }}');
+            const additionalInfoContainer = document.getElementById('additional-info-container');
+
+            // Fonction pour afficher ou masquer le champ additionnel
+            function toggleAdditionalInfo() {
+                console.log(typeField.value)
+                if (typeField.value == 3) {
+                    additionalInfoContainer.style.display = 'block';
+                } else {
+                    additionalInfoContainer.style.display = 'none';
+                }
+            }
+
+            typeField.addEventListener('change', toggleAdditionalInfo);
+            toggleAdditionalInfo();
+        });
+    </script>
+
+
+{% endblock %}
