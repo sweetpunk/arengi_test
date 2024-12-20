@@ -60,6 +60,7 @@ class CarController extends AbstractController
     }
 
     #[Route('/edit/{id}', name: 'car_edit')]
+    #[IsGranted('ROLE_ADMIN')]
     public function edit(Car $car, Request $request, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(CarType::class, $car);
